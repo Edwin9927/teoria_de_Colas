@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teoria de Colas</title>
+
+    <link href="{{ url_for('static',filename='style/stile.css') }}" rel="stylesheet" type="text/css">
+</head>
+<body>
+    {% block content%}
+    <form action="" class="form" method="post">
+        <h2 class="form_title">Datos</h2>
+        <p class="form_paragraph">Ingrese los da
+            tos necesarios para</p>
+
+        <div class="form_container">
+            <div class="form_group">
+                <input type="number" name="lambda" id="lambda" class="form_input" placeholder=" ">
+                <label for="lambda" class="form_label">𝛌</label>
+                <span class="form_line"></span>
+            </div>
+
+            <div class="form_group">
+                <input type="number" name="mu" id="mu" class="form_input" placeholder=" ">
+                <label for="mu" class="form_label">𝛍</label>
+                <span class="form_line"></span>
+            </div>
+            
+            <div class="form_group">
+                <input type="number" name="c" id="c" class="form_input" placeholder=" ">
+                <label for="c" class="form_label">C</label>
+                <span class="form_line"></span>
+            </div>
+            
+            <div class="form_group">
+                <input type="text" name="n" id="n" class="form_input" placeholder=" ">
+                <label for="n" class="form_label">Sys. Lim. N</label>
+                <span class="form_line"></span>
+            </div>
+
+            <div class="form_group">
+                <input type="text" name="k" id="k" class="form_input" placeholder=" ">
+                <label for="k" class="form_label">Source limit, K</label>
+                <span class="form_line"></span>
+            </div>
+
+            <input type="submit" value="Calcular" class="form_submit">
+
+        </div>
+    </form>
+    {% endblock %}
+</body>
+</html>
