@@ -80,7 +80,7 @@ class picm:
         return self.l_part2()
 
     def w(self):
-        return ((self.w_part1() / self.w_part2()) * self.p_cero()) + self.rho()
+        return ((self.w_part1() / self.w_part2()) * self.p_cero()) + (1 / self.mu)
 
     def w_q(self):
         return (self.w_part1() / self.w_part2()) * self.p_cero()

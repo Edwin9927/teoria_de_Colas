@@ -9,11 +9,11 @@ app = Flask(__name__)
 def index():
     if request.method == 'POST':
         data = request.form.to_dict()
-        obj_picm = picm(int(data["c"]), float(data["mu"]), float(data["lambda"]))
+        obj_picm = picm(int(data["k"]), float(data["mu"]), float(data["lambda"]))
         if obj_picm.estabilidadSistema():
             print("p0=", obj_picm.p_cero())
             print("pk=", obj_picm.p_k())
-            print("p1=", obj_picm.p_n(2))
+            print("p3=", obj_picm.p_n(3))
             print("l=", obj_picm.l())
             print("lq=", obj_picm.l_q())
             print("ln=", obj_picm.l_n())

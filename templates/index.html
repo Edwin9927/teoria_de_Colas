@@ -17,32 +17,26 @@
 
         <div class="form_container">
             <div class="form_group">
-                <input type="text" name="lambda" id="lambda" class="form_input" placeholder=" ">
-                <label for="lambda" class="form_label">𝛌</label>
+                <input type="text" name="lambda" id="lambda" class="form_input" placeholder=" " required pattern="^[1-9]\d*(\.\d+)?$">
+                <label for="lambda" class="form_label">Tasa de llegada (𝛌)</label>
                 <span class="form_line"></span>
             </div>
 
             <div class="form_group">
-                <input type="text" name="mu" id="mu" class="form_input" placeholder=" ">
-                <label for="mu" class="form_label">𝛍</label>
+                <input type="text" name="mu" id="mu" class="form_input" placeholder=" " required pattern="^[1-9]\d*(\.\d+)?$">
+                <label for="mu" class="form_label">Tasa de servicio (𝛍)</label>
                 <span class="form_line"></span>
             </div>
             
             <div class="form_group">
-                <input type="text" name="c" id="c" class="form_input" placeholder=" ">
-                <label for="c" class="form_label">C</label>
+                <input type="text" name="k" id="k" class="form_input" placeholder=" "  pattern="^[1-9]\d*$">
+                <label for="k" class="form_label">Núm. de servidores (k)</label>
                 <span class="form_line"></span>
             </div>
             
             <div class="form_group">
-                <input type="text" name="n" id="n" class="form_input" placeholder=" ">
-                <label for="n" class="form_label">Sys. Lim. N</label>
-                <span class="form_line"></span>
-            </div>
-
-            <div class="form_group">
-                <input type="text" name="k" id="k" class="form_input" placeholder=" ">
-                <label for="k" class="form_label">Source limit, K</label>
+                <input type="text" name="m" id="m" class="form_input" placeholder=" " pattern="^[1-9]\d*$">
+                <label for="m" class="form_label">Población (M)</label>
                 <span class="form_line"></span>
             </div>
 
