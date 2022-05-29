@@ -5,60 +5,107 @@
     <link href="{{ url_for('static',filename='style/a.css') }}" rel="stylesheet" type="text/css">
 </head>
 
+<body>
+    <br>
+    <h1>P
+    {% if nav.m == '': %}
+        I
+    {% else %}
+        F
+    {% endif %}
+        C
+    {% if nav.k == '1': %}
+        S
+    {% else %}
+        M
+    {% endif %}
+    </h1>
+    <br>
+    <table class="default">
+        <caption>Datos</caption>
+        <thead>
+            <tr>
+                <th>item</th>
+                <th>symbol</th>
+                <th>value</th>
+            </tr>
+        </thead>
 
-<table class="default">
-    <caption>Datos</caption>
-    <thead>
-    <tr>
-        <td>Lamba</td>
-        <td>Mu</td>
-        <td>k</td>
-        <td>M</td>
-    </tr>
-    </thead>
-    <tr>
-        <td>{{nav.lambda}}</td>
-        <td>{{nav.mu}}</td>
-        <td>{{nav.k}}</td>
-        {% if nav.m == '' : %}
-        <td>∞</td>
-        {% else %}
-        <td>{{nav.m}}</td>
-        {% endif %}
-    </tr>
-</table>
-<br>
-{% if estabilidad %}
-<table class="default">
-    <caption>Numero esperado de</caption>
-    <thead>
-    <tr>
-        <td scope="row">L</td>
-        <td scope="row">Lq</td>
-        <td scope="row">Ln</td>
-    </tr>
-    </thead>
-    <tr>
-        <td>{{l}}</td>
-        <td>{{lq}}</td>
-        <td>{{ln}}</td>
-
-    </tr>
-</table>
-<br>
-<table>
+        <tr>
+            <td>Tasa de llegada</td>
+            <td>𝛌</td>
+            <td>{{nav.lambda}}</td>
+        </tr>
+        <tr>
+            <td>Tasa de servicio</td>
+            <td>𝛍</td>
+            <td>{{nav.mu}}</td>
+        </tr>
+        <tr>
+            <td>Núm. de servidores</td>
+            <td>k</td>
+            <td>{{nav.k}}</td>
+        </tr>
+        <tr>
+            <td>Población</td>
+            <td>M</td>
+            {% if nav.m == '' : %}
+            <td>∞</td>
+            {% else %}
+            <td>{{nav.m}}</td>
+            {% endif %}
+        </tr>
+    </table>
+    <br>
+    {% if estabilidad %}
+    <table class="default">
+        <caption>Numero esperado de Clientes</caption>
+        <thead>
+            <tr>
+                <th>item</th>
+                <th>symbol</th>
+                <th>value</th>
+            </tr>
+        </thead>
+        <tr>
+            <td scope="row">En el sistema</td>
+            <td>L</td>
+            <td>{{l}}</td>
+        </tr>
+        <tr>
+            <td scope="row">En la cola</td>
+            <td>L<sub>q</sub></td>
+            <td>{{lq}}</td>
+        </tr>
+        <tr>
+            <td scope="row">En la cola no vacia</td>
+            <td>L<sub>n</sub></td>
+            <td>{{ln}}</td>
+        </tr>
+    </table>
+    <br>
     <table class="default">
         <caption>Tiempo esperado</caption>
         <thead>
-        <tr>
-            <td scope="row">W</td>
-            <td scope="row">Wq</td>
-            <td scope="row">Wn</td>
-        </tr>
+            <tr>
+                <th>item</th>
+                <th>symbol</th>
+                <th>value</th>
+            </tr>
         </thead>
         <tr>
+            <td>En el sistema</td>
+            <td scope="row">W</td>
             <td>{{w}}</td>
+        </tr>
+        <tr>
+            <td>En la cola</td>
+            <td>W<sub>q</sub></td>
             <td>{{wq}}</td>
+        </tr>
+        <tr>
+            <td>En la cola no vacia</td>
+            <td>W<sub>n</sub></td>
             <td>{{wn}}</td>
         </tr>
     </table>
@@ -68,3 +115,4 @@
     {% endif %}
 
     <a href="{{ url_for('index') }}">Regresar</a>
+</body>

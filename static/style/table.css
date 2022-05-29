@@ -25,6 +25,8 @@ caption{
 	color: white;
 	font-family: 'Roboto Light', sans-serif;
 	font-size: 2rem;
+	margin: 20px;
+	text-shadow: 0 5px 10px -5px black;
 }
 
 thead{
