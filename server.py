@@ -9,6 +9,7 @@ app = Flask(__name__)
 def index():
     if request.method == 'POST':
         data = request.form.to_dict()
+        print(data)
         obj_picm = picm(int(data["k"]), float(data["mu"]), float(data["lambda"]))
         if obj_picm.estabilidadSistema():
             print("p0=", obj_picm.p_cero())
@@ -23,16 +24,27 @@ def index():
             print(data)
         else:
             print("Sistema no valido")
-        return "Datos recibidos"
-    elif request.method == 'GET':
-        return render_template('index.html')
-    else:
-        return "Metodo no valido"
+        return render_template(
+            'data.html',
+            nav=data,
+            rho=obj_picm.rho(),
+            rho_k=obj_picm.rho_k(),
+            estabilidad=obj_picm.estabilidadSistema(),
+            p0=obj_picm.p_cero(),
+            l=obj_picm.l(),
+            lq=obj_picm.l_q(),
+            ln=obj_picm.l_n(),
+            w=obj_picm.w(),
+            wq=obj_picm.w_q(),
+            wn=obj_picm.w_n()
+            )
+    return render_template('index.html')
 
 
-@app.route("/sytle")
-def style():
-    return "/style/stile.css"
+
+@app.route("/show", methods=['GET', 'POST'])
+def show():
+    return render_template('data.html')
 
 
 if __name__ == "__main__":

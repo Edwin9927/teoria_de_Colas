@@ -1,0 +1,70 @@
+<head>
+	<meta charset="UTF-8">
+	<title>Dando estilo a tablas</title>
+    <link href="{{ url_for('static',filename='style/table.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static',filename='style/a.css') }}" rel="stylesheet" type="text/css">
+</head>
+
+
+<table class="default">
+    <caption>Datos</caption>
+    <thead>
+    <tr>
+        <td>Lamba</td>
+        <td>Mu</td>
+        <td>k</td>
+        <td>M</td>
+    </tr>
+    </thead>
+    <tr>
+        <td>{{nav.lambda}}</td>
+        <td>{{nav.mu}}</td>
+        <td>{{nav.k}}</td>
+        {% if nav.m == '' : %}
+        <td>∞</td>
+        {% else %}
+        <td>{{nav.m}}</td>
+        {% endif %}
+    </tr>
+</table>
+<br>
+{% if estabilidad %}
+<table class="default">
+    <caption>Numero esperado de</caption>
+    <thead>
+    <tr>
+        <td scope="row">L</td>
+        <td scope="row">Lq</td>
+        <td scope="row">Ln</td>
+    </tr>
+    </thead>
+    <tr>
+        <td>{{l}}</td>
+        <td>{{lq}}</td>
+        <td>{{ln}}</td>
+
+    </tr>
+</table>
+<br>
+<table>
+    <table class="default">
+        <caption>Tiempo esperado</caption>
+        <thead>
+        <tr>
+            <td scope="row">W</td>
+            <td scope="row">Wq</td>
+            <td scope="row">Wn</td>
+        </tr>
+        </thead>
+        <tr>
+            <td>{{w}}</td>
+            <td>{{wq}}</td>
+            <td>{{wn}}</td>
+        </tr>
+    </table>
+    <br>
+    {% else %}
+    <h1>El sistema no cumple con la condicion de estabilidad</h1>
+    {% endif %}
+
+    <a href="{{ url_for('index') }}">Regresar</a>
