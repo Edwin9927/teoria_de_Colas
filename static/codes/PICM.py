@@ -44,15 +44,15 @@ class picm:
         return 1 - self.p_k()
 
     def p_n(self, n):
-        #if self.k >= n:
-        part1 = 1 / (factorial(self.k) * (self.k ** (n - self.k)))
-        part2 = (self.rho()) ** n
-        part3 = self.p_cero()
-        return part3 * part2 * part1
-        """else:
+        if n >= self.k:
+            part1 = 1 / (factorial(self.k) * (self.k ** (n - self.k)))
+            part2 = (self.rho()) ** n
+            part3 = self.p_cero()
+            return part3 * part2 * part1
+        else:
             parte_1 = self.p_cero() / factorial(n)
             parte_2 = self.rho() ** n
-            return parte_1 * parte_2"""
+            return parte_1 * parte_2
 
     def generarPn(self):
         cpn = self.p_cero()
