@@ -1,0 +1,4 @@
+Flask
+h5py==3.6.0
+Jinja2
+matplotlib
