@@ -44,15 +44,23 @@ class picm:
         return 1 - self.p_k()
 
     def p_n(self, n):
-        if self.k >= n:
-            part1 = 1 / (factorial(self.k) * (self.k ** (n - self.k)))
-            part2 = (self.rho()) ** n
-            part3 = self.p_cero()
-            return part3 * part2 * part1
-        else:
+        #if self.k >= n:
+        part1 = 1 / (factorial(self.k) * (self.k ** (n - self.k)))
+        part2 = (self.rho()) ** n
+        part3 = self.p_cero()
+        return part3 * part2 * part1
+        """else:
             parte_1 = self.p_cero() / factorial(n)
             parte_2 = self.rho() ** n
-            return parte_1 * parte_2
+            return parte_1 * parte_2"""
+
+    def generarPn(self):
+        cpn = self.p_cero()
+        dic = [{'n': '0', 'pn': str(cpn), 'cpn': str(cpn), 'ccpn': str(1-cpn)}]
+        for i in range(1, 51):
+            cpn += self.p_n(i)
+            dic.append({'n': i, 'pn': self.p_n(i), 'cpn': str(cpn), 'ccpn': str(1-cpn)})
+        return dic
 
     # Calculo de L
     # Numero esperado de

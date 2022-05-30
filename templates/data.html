@@ -34,12 +34,12 @@
         <tr>
             <td>Tasa de llegada</td>
             <td>𝛌</td>
-            <td>{{nav.lambda}}</td>
+            <td>{{nav.lambda}} c/h</td>
         </tr>
         <tr>
             <td>Tasa de servicio</td>
             <td>𝛍</td>
-            <td>{{nav.mu}}</td>
+            <td>{{nav.mu}} c/h</td>
         </tr>
         <tr>
             <td>Núm. de servidores</td>
@@ -110,7 +110,54 @@
         </tr>
     </table>
     <br>
+    <table class="default">
+        <caption>Probabilidades Generales</caption>
+        <thead>
+            <tr>
+                <th>item</th>
+                <th>symbol</th>
+                <th>value</th>
+            </tr>
+        </thead>
+        <tr>
+            <td>Hallar el sistema vacio</td>
+            <td>P<sub>0</sub></td>
+            <td>{{p0}}</td>
+        </tr>
+        <tr>
+            <td>Un usuario tenga que esperar</td>
+            <td>P<sub>k</sub></td>
+            <td>{{pk}}</td>
+        </tr>
+        <tr>
+            <td>Un usuario no tenga que esperar</td>
+            <td>P<sub>NE</sub></td>
+            <td>{{pne}}</td>
+        </tr>
+    </table>
+    <br>
+        <table class="default">
+        <caption>Probabilidades Especificas</caption>
+        <thead>
+            <tr>
+                <th>n</th>
+                <th>P<sub>n</sub></th>
+                <th>CP<sub>n</sub></th>
+                <th>1-CP<sub>n</sub></th>
+            </tr>
+        </thead>
+            {% for e in pn %}
+            <tr>
+                    <td>{{e.n}}</td>
+                    <td>{{e.pn}}</td>
+                    <td>{{e.cpn}}</td>
+                    <td>{{e.ccpn}}</td>
+            </tr>
+            {% endfor %}
+    </table>
+        <br>
     {% else %}
+    <br>
     <h1>El sistema no cumple con la condicion de estabilidad</h1>
     {% endif %}
 

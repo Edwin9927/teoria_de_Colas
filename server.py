@@ -21,6 +21,7 @@ def index():
             print("w=", obj_picm.w())
             print("wq=", obj_picm.w_q())
             print("wn=", obj_picm.w_n())
+            print("pn", obj_picm.generarPn())
             print(data)
         else:
             print("Sistema no valido")
@@ -31,12 +32,15 @@ def index():
             rho_k=obj_picm.rho_k(),
             estabilidad=obj_picm.estabilidadSistema(),
             p0=obj_picm.p_cero(),
+            pk=obj_picm.p_k(),
+            pne=obj_picm.complemnto_p(),
             l=obj_picm.l(),
             lq=obj_picm.l_q(),
             ln=obj_picm.l_n(),
             w=obj_picm.w(),
             wq=obj_picm.w_q(),
-            wn=obj_picm.w_n()
+            wn=obj_picm.w_n(),
+            pn=obj_picm.generarPn()
             )
     return render_template('index.html')
 
