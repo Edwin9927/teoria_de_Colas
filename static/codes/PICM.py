@@ -3,13 +3,11 @@ from math import factorial
 
 class picm:
 
-    def __init__(self, k, mu, _lambda, h_labo, c_s):
+    def __init__(self, k, mu, _lambda):
         self.k = k
         self.mu = mu
         self._lambda = _lambda
-        self.h_labo = h_labo
-        self.c_s = c_s
-
+        
     def rho_k(self):
         return self._lambda / (self.k * self.mu)
 
