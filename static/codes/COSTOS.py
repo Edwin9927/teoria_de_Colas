@@ -1,7 +1,5 @@
-    from 
-   class costo:
-   
-    
+
+  class costo:
     def __init__(self, k, mu, _lambda, h_labo, c_s):
         self.k = k
         self.mu = mu
