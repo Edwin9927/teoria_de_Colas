@@ -1,5 +1,14 @@
     from 
    class costo:
+   
+    
+    def __init__(self, k, mu, _lambda, h_labo, c_s):
+        self.k = k
+        self.mu = mu
+        self._lambda = _lambda
+        self.h_labo = h_labo
+        self.c_s = c_s
+        
     #Calculo de Costos
     #Costos unitarios
 
