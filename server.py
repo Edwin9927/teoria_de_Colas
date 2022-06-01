@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template
 
+from static.codes.COSTOS import costo
 from static.codes.PFCM import pfcm
 from static.codes.PICM import picm
 
@@ -16,7 +17,7 @@ def index():
             print(data["m"])
             obj_picm = picm(int(data["k"]), float(data["mu"]), float(data["lambda"]))
             if obj_picm.estabilidadSistema():
-                """print("p0=", obj_picm.p_cero())
+                print("p0=", obj_picm.p_cero())
                 print("pk=", obj_picm.p_k())
                 print("p0=", obj_picm.p_n(0))
                 print("l=", obj_picm.l())
@@ -26,7 +27,36 @@ def index():
                 print("wq=", obj_picm.w_q())
                 print("wn=", obj_picm.w_n())
                 print("pn", obj_picm.generarPn())
-                print(data)"""
+                print(data)
+
+                dl = 1
+
+                if data["dl"] == '':
+                    pass
+                else:
+                    dl = int(data['dl'])
+
+                if data["cs"] == '':
+                    print("No hay costes")
+                else:
+                    obj_costo = costo(
+                        obj_picm.k,
+                        float(data["lambda"]),
+                        obj_picm.w_q(),
+                        obj_picm.w(),
+                        float(data["mu"]),
+                        dl,
+                        float(data['cs']),
+                        float(data['cu']),
+                        data['costo']
+                    )
+
+                    print("ctte", obj_costo.c_t_te())
+                    print('ctts', obj_costo.c_t_ts())
+                    print("cttse", obj_costo.c_t_tse())
+                    print("cts", obj_costo.c_t_s())
+                    print("ct", obj_costo.c_t())
+
             else:
                 print("Sistema no valido")
             return render_template(

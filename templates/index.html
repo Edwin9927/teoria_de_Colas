@@ -52,9 +52,23 @@
             </div>
 
             <div class="form_group">
-                <input type="text" name="cu" id="cu" class="form_input" placeholder=" " pattern="^[1-9]\d*$">
+                <input type="text" name="cu" id="cu" class="form_input" placeholder=" " pattern="^[0-9]\d*(\.\d+)?$$">
                 <label for="cu" class="form_label">Costo de tiempo del cliente</label>
                 <span class="form_line"></span>
+            </div>
+
+            <div>
+                <input type="radio" id="cte"
+                name="costo" value="TE" checked>
+                <label for="cte">C<sub>TE</sub></label>
+
+                <input type="radio" id="cts"
+                name="costo" value="TS">
+                <label for="cts">C<sub>TS</sub></label>
+
+                <input type="radio" id="ctse"
+                name="costo" value="TSE">
+                <label for="ctse">C<sub>TSE</sub></label>
             </div>
 
             <input type="submit" value="Calcular" class="form_submit">
