@@ -39,6 +39,24 @@
                 <span class="form_line"></span>
             </div>
 
+            <div class="form_group">
+                <input type="text" name="dl" id="dl" class="form_input" placeholder=" " pattern="^[0-9]\d*$">
+                <label for="dl" class="form_label">No. de horas laborables</label>
+                <span class="form_line"></span>
+            </div>
+
+            <div class="form_group">
+                <input type="text" name="cs" id="cs" class="form_input" placeholder=" " pattern="^[0-9]\d*(\.\d+)?$$">
+                <label for="cs" class="form_label">Costo del servidor (Cs)</label>
+                <span class="form_line"></span>
+            </div>
+
+            <div class="form_group">
+                <input type="text" name="cu" id="cu" class="form_input" placeholder=" " pattern="^[1-9]\d*$">
+                <label for="cu" class="form_label">Costo de tiempo del cliente</label>
+                <span class="form_line"></span>
+            </div>
+
             <input type="submit" value="Calcular" class="form_submit">
 
         </div>

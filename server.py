@@ -61,7 +61,20 @@ def index():
             print("w", obj_pfcm.w())
             print("wq", obj_pfcm.w_q())
             print("wn", obj_pfcm.w_n())
-            return "Hola"
+            return render_template(
+                'dataPFCM.html',
+                nav=data,
+                p0=obj_pfcm.p_cero(),
+                pe=obj_pfcm.p_e(),
+                pne=obj_pfcm.p_ne(),
+                l=obj_pfcm.l(),
+                lq=obj_pfcm.l_q(),
+                ln=obj_pfcm.l_n(),
+                w=obj_pfcm.w(),
+                wq=obj_pfcm.w_q(),
+                wn=obj_pfcm.w_n(),
+                pn=obj_pfcm.generarPn()
+            )
 
     return render_template('index.html')
 
