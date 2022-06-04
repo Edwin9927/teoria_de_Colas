@@ -3,6 +3,7 @@ from flask import Flask, request, render_template
 from static.codes.COSTOS import costo
 from static.codes.PFCM import pfcm
 from static.codes.PICM import picm
+from static.codes.experimentacion import experimentacion
 
 app = Flask(__name__)
 
@@ -13,11 +14,10 @@ def index():
         data = request.form.to_dict()
         print(data)
         if data["m"] == '':
-            print("PI")
-            print(data["m"])
             obj_picm = picm(int(data["k"]), float(data["mu"]), float(data["lambda"]))
+
             if obj_picm.estabilidadSistema():
-                print("p0=", obj_picm.p_cero())
+                """print("p0=", obj_picm.p_cero())
                 print("pk=", obj_picm.p_k())
                 print("p0=", obj_picm.p_n(0))
                 print("l=", obj_picm.l())
@@ -27,10 +27,9 @@ def index():
                 print("wq=", obj_picm.w_q())
                 print("wn=", obj_picm.w_n())
                 print("pn", obj_picm.generarPn())
-                print(data)
+                print(data)"""
 
                 dl = 1
-
                 if data["dl"] == '':
                     pass
                 else:
@@ -39,6 +38,14 @@ def index():
                 if data["cs"] == '':
                     print("No hay costes")
                 else:
+                    obj_exp = experimentacion(
+                        obj_picm,
+                        int(data['dl']),
+                        float(data['cs']),
+                        float(data['cu']),
+                        data['costo']
+                    )
+
                     obj_costo = costo(
                         obj_picm.k,
                         float(data["lambda"]),
@@ -79,7 +86,7 @@ def index():
         else:
             print("PF")
             obj_pfcm = pfcm(int(data["k"]), float(data["mu"]), float(data["lambda"]), int(data["m"]))
-            print("p0_parte1", obj_pfcm.p_cero_parte1())
+            """print("p0_parte1", obj_pfcm.p_cero_parte1())
             print("p0_parte2", obj_pfcm.p_cero_parte2())
             print("p0", obj_pfcm.p_cero())
             print(obj_pfcm.generarPn())
@@ -90,7 +97,7 @@ def index():
             print("ln", obj_pfcm.l_n())
             print("w", obj_pfcm.w())
             print("wq", obj_pfcm.w_q())
-            print("wn", obj_pfcm.w_n())
+            print("wn", obj_pfcm.w_n())"""
             return render_template(
                 'dataPFCM.html',
                 nav=data,
@@ -107,7 +114,6 @@ def index():
             )
 
     return render_template('index.html')
-
 
 
 @app.route("/show", methods=['GET', 'POST'])
