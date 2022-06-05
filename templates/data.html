@@ -58,108 +58,229 @@
     </table>
     <br>
     {% if estabilidad %}
-    <table class="default">
-        <caption>Numero esperado de Clientes</caption>
-        <thead>
-            <tr>
-                <th>item</th>
-                <th>symbol</th>
-                <th>value</th>
-            </tr>
-        </thead>
-        <tr>
-            <td scope="row">En el sistema</td>
-            <td>L</td>
-            <td>{{l}}</td>
-        </tr>
-        <tr>
-            <td scope="row">En la cola</td>
-            <td>L<sub>q</sub></td>
-            <td>{{lq}}</td>
-        </tr>
-        <tr>
-            <td scope="row">En la cola no vacia</td>
-            <td>L<sub>n</sub></td>
-            <td>{{ln}}</td>
-        </tr>
-    </table>
-    <br>
-    <table class="default">
-        <caption>Tiempo esperado</caption>
-        <thead>
-            <tr>
-                <th>item</th>
-                <th>symbol</th>
-                <th>value</th>
-            </tr>
-        </thead>
-        <tr>
-            <td>En el sistema</td>
-            <td scope="row">W</td>
-            <td>{{w}}</td>
-        </tr>
-        <tr>
-            <td>En la cola</td>
-            <td>W<sub>q</sub></td>
-            <td>{{wq}}</td>
-        </tr>
-        <tr>
-            <td>En la cola no vacia</td>
-            <td>W<sub>n</sub></td>
-            <td>{{wn}}</td>
-        </tr>
-    </table>
-    <br>
-    <table class="default">
-        <caption>Probabilidades Generales</caption>
-        <thead>
-            <tr>
-                <th>item</th>
-                <th>symbol</th>
-                <th>value</th>
-            </tr>
-        </thead>
-        <tr>
-            <td>Hallar el sistema vacio</td>
-            <td>P<sub>0</sub></td>
-            <td>{{p0}}</td>
-        </tr>
-        <tr>
-            <td>Un usuario tenga que esperar</td>
-            <td>P<sub>k</sub></td>
-            <td>{{pk}}</td>
-        </tr>
-        <tr>
-            <td>Un usuario no tenga que esperar</td>
-            <td>P<sub>NE</sub></td>
-            <td>{{pne}}</td>
-        </tr>
-    </table>
-    <br>
         <table class="default">
-        <caption>Probabilidades Especificas</caption>
-        <thead>
+            <caption>Numero esperado de Clientes</caption>
+            <thead>
+                <tr>
+                    <th>item</th>
+                    <th>symbol</th>
+                    <th>value</th>
+                </tr>
+            </thead>
             <tr>
-                <th>n</th>
-                <th>P<sub>n</sub></th>
-                <th>CP<sub>n</sub></th>
-                <th>1-CP<sub>n</sub></th>
+                <td scope="row">En el sistema</td>
+                <td>L</td>
+                <td>{{l}}</td>
             </tr>
-        </thead>
-            {% for e in pn %}
             <tr>
-                    <td>{{e.n}}</td>
-                    <td>{{e.pn}}</td>
-                    <td>{{e.cpn}}</td>
-                    <td>{{e.ccpn}}</td>
+                <td scope="row">En la cola</td>
+                <td>L<sub>q</sub></td>
+                <td>{{lq}}</td>
             </tr>
-            {% endfor %}
-    </table>
+            <tr>
+                <td scope="row">En la cola no vacia</td>
+                <td>L<sub>n</sub></td>
+                <td>{{ln}}</td>
+            </tr>
+        </table>
         <br>
+        <table class="default">
+            <caption>Tiempo esperado</caption>
+            <thead>
+                <tr>
+                    <th>item</th>
+                    <th>symbol</th>
+                    <th>value</th>
+                </tr>
+            </thead>
+            <tr>
+                <td>En el sistema</td>
+                <td scope="row">W</td>
+                <td>{{w}}</td>
+            </tr>
+            <tr>
+                <td>En la cola</td>
+                <td>W<sub>q</sub></td>
+                <td>{{wq}}</td>
+            </tr>
+            <tr>
+                <td>En la cola no vacia</td>
+                <td>W<sub>n</sub></td>
+                <td>{{wn}}</td>
+            </tr>
+        </table>
+        <br>
+        <table class="default">
+            <caption>Probabilidades Generales</caption>
+            <thead>
+                <tr>
+                    <th>item</th>
+                    <th>symbol</th>
+                    <th>value</th>
+                </tr>
+            </thead>
+            <tr>
+                <td>Hallar el sistema vacio</td>
+                <td>P<sub>0</sub></td>
+                <td>{{p0}}</td>
+            </tr>
+            <tr>
+                <td>Un usuario tenga que esperar</td>
+                <td>P<sub>k</sub></td>
+                <td>{{pk}}</td>
+            </tr>
+            <tr>
+                <td>Un usuario no tenga que esperar</td>
+                <td>P<sub>NE</sub></td>
+                <td>{{pne}}</td>
+            </tr>
+        </table>
+        <br>
+            <table class="default">
+            <caption>Probabilidades Especificas</caption>
+            <thead>
+                <tr>
+                    <th>n</th>
+                    <th>P<sub>n</sub></th>
+                    <th>CP<sub>n</sub></th>
+                    <th>1-CP<sub>n</sub></th>
+                </tr>
+            </thead>
+                {% for e in pn %}
+                <tr>
+                        <td>{{e.n}}</td>
+                        <td>{{e.pn}}</td>
+                        <td>{{e.cpn}}</td>
+                        <td>{{e.ccpn}}</td>
+                </tr>
+                {% endfor %}
+        </table>
+        <br>
+        {% if nav.cs == '': %}
+        <h1>No hay costos</h1>
+        {% else %}
+        <table class="default">
+            <caption>Datos para costos</caption>
+            <thead>
+                <tr>
+                    <th>item</th>
+                    <th>symbol</th>
+                    <th>measured</th>
+                    <th>value</th>
+                </tr>
+            </thead>
+            <tr>
+                <td>Horas al dia</td>
+                <td>H_d</td>
+                <td>h/dia</td>
+                <td>{{nav.dl}}</td>
+            </tr>
+            <tr>
+                <td>Costo del servidor</td>
+                <td>Cs</td>
+                <td>$/h</td>
+                <td>{{nav.cs}}</td>
+            </tr>
+            <tr>
+                {% if nav.costo == 'TS': %}
+                    <td>Costo por tiempo en el sistema</td>
+                {% elif nav.costo == 'TE': %}
+                    <td>Costo por tiempo de espera</td>
+                {% else %}
+                    <td>Costo por tiempo en el servicio</td>
+                {% endif %}
+                <td>C<sub>{{nav.costo}}</sub></td>
+                <td>$/h</td>
+                <td>{{nav.cu}}</td>
+            </tr>
+        </table>
+        <br>
+            <table class="default">
+            <caption>Costos</caption>
+            <thead>
+                <tr>
+                    <th>item</th>
+                    <th>symbol</th>
+                    <th>measured</th>
+                    <th>value</th>
+                </tr>
+            </thead>
+                <tr>
+                    <td>Costo Diario por el Tiempo de Espera en Cola</td>
+                    <td>CT<sub>TE</sub></td>
+                    <td>$/d</td>
+                    <td>{{d_ct.ctte}}</td>
+                </tr>
+
+                <tr>
+                    <td>Costo Diario por el Tiempo en el sistema</td>
+                    <td>CT<sub>TS</sub></td>
+                    <td>$/d</td>
+                    <td>{{d_ct.ctts}}</td>
+                </tr>
+
+                <tr>
+                    <td>Costo Diario por el Tiempo en el servicio</td>
+                    <td>CT<sub>TSE</sub></td>
+                    <td>$/d</td>
+                    <td>{{d_ct.cttse}}</td>
+                </tr>
+
+                <tr>
+                    <td>Costo Diario del servidor</td>
+                    <td>CT<sub>S</sub></td>
+                    <td>$/d</td>
+                    <td>{{d_ct.cts}}</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Costo Total Diario del Sistema</strong></td>
+                    <td><strong>CT</strong></td>
+                    <td><strong>$/d</strong></td>
+                    <td><strong>{{d_ct.ct}}</strong></td>
+                </tr>
+        </table>
+        <br>
+        <table class="default">
+            <caption>Experimentacion</caption>
+            <thead>
+                <tr>
+                    <th>k</th>
+                    <th>P<sub>0</sub></th>
+                    <th>L</th>
+                    <th>L<sub>q</sub></th>
+                    <th>W</th>
+                    <th>W<sub>q</sub></th>
+                    <th>CT</th>
+                </tr>
+            </thead>
+                {% for i in d_exp %}
+                <tr>
+                    {% if d_exp_opt.k == i.k: %}
+                    <td><strong>{{i.k}}</strong></td>
+                    <td><strong>{{i.p0}}</strong></td>
+                    <td><strong>{{i.l}}</strong></td>
+                    <td><strong>{{i.lq}}</strong></td>
+                    <td><strong>{{i.w}}</strong></td>
+                    <td><strong>{{i.wq}}</strong></td>
+                    <td><strong>{{i.ct}}</strong></td>
+                    {% else %}
+                    <td>{{i.k}}</td>
+                    <td>{{i.p0}}</td>
+                    <td>{{i.l}}</td>
+                    <td>{{i.lq}}</td>
+                    <td>{{i.w}}</td>
+                    <td>{{i.wq}}</td>
+                    <td>{{i.ct}}</td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+        </table>
+        <br>
+        {% endif %}
     {% else %}
     <br>
     <h1>El sistema no cumple con la condicion de estabilidad</h1>
     {% endif %}
-
     <a href="{{ url_for('index') }}">Regresar</a>
 </body>

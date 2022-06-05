@@ -13,9 +13,12 @@ def index():
     if request.method == 'POST':
         data = request.form.to_dict()
         print(data)
+
+        # Determinar si el sistema es finito
         if data["m"] == '':
             obj_picm = picm(int(data["k"]), float(data["mu"]), float(data["lambda"]))
 
+            # Determinar si la condicion del sistema es valido
             if obj_picm.estabilidadSistema():
                 """print("p0=", obj_picm.p_cero())
                 print("pk=", obj_picm.p_k())
@@ -30,13 +33,33 @@ def index():
                 print(data)"""
 
                 dl = 1
+
+                # Determinar las horas de trabajo en un dia
                 if data["dl"] == '':
                     pass
                 else:
                     dl = int(data['dl'])
 
+                # Determinar si se ingreso el costo del servidor
                 if data["cs"] == '':
                     print("No hay costes")
+                    return render_template(
+                        'data.html',
+                        nav=data,
+                        rho=obj_picm.rho(),
+                        rho_k=obj_picm.rho_k(),
+                        estabilidad=obj_picm.estabilidadSistema(),
+                        p0=obj_picm.p_cero(),
+                        pk=obj_picm.p_k(),
+                        pne=obj_picm.complemnto_p(),
+                        l=obj_picm.l(),
+                        lq=obj_picm.l_q(),
+                        ln=obj_picm.l_n(),
+                        w=obj_picm.w(),
+                        wq=obj_picm.w_q(),
+                        wn=obj_picm.w_n(),
+                        pn=obj_picm.generarPn()
+                    )
                 else:
                     obj_exp = experimentacion(
                         obj_picm,
@@ -63,26 +86,30 @@ def index():
                     print("cttse", obj_costo.c_t_tse())
                     print("cts", obj_costo.c_t_s())
                     print("ct", obj_costo.c_t())
+                    return render_template(
+                        'data.html',
+                        nav=data,
+                        rho=obj_picm.rho(),
+                        rho_k=obj_picm.rho_k(),
+                        estabilidad=obj_picm.estabilidadSistema(),
+                        p0=obj_picm.p_cero(),
+                        pk=obj_picm.p_k(),
+                        pne=obj_picm.complemnto_p(),
+                        l=obj_picm.l(),
+                        lq=obj_picm.l_q(),
+                        ln=obj_picm.l_n(),
+                        w=obj_picm.w(),
+                        wq=obj_picm.w_q(),
+                        wn=obj_picm.w_n(),
+                        pn=obj_picm.generarPn(),
+                        d_ct=obj_costo.reporte_costos(),
+                        d_exp=obj_exp.datos(),
+                        d_exp_opt=obj_exp.costo_optimo()
+                    )
 
             else:
                 print("Sistema no valido")
-            return render_template(
-                'data.html',
-                nav=data,
-                rho=obj_picm.rho(),
-                rho_k=obj_picm.rho_k(),
-                estabilidad=obj_picm.estabilidadSistema(),
-                p0=obj_picm.p_cero(),
-                pk=obj_picm.p_k(),
-                pne=obj_picm.complemnto_p(),
-                l=obj_picm.l(),
-                lq=obj_picm.l_q(),
-                ln=obj_picm.l_n(),
-                w=obj_picm.w(),
-                wq=obj_picm.w_q(),
-                wn=obj_picm.w_n(),
-                pn=obj_picm.generarPn()
-            )
+
         else:
             print("PF")
             obj_pfcm = pfcm(int(data["k"]), float(data["mu"]), float(data["lambda"]), int(data["m"]))

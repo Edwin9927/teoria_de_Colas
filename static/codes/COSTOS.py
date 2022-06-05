@@ -34,7 +34,10 @@ class costo:
 
     # C. diarios servidor
     def c_t_s(self):
-        return self.k * self.cs
+        return self.k * self.cs * self.dl
 
     def c_t(self):
         return self.c_t_s() + self.c_t_ts() + self.c_t_te() + self.c_t_tse()
+
+    def reporte_costos(self):
+        return {'ctte': self.c_t_te(), 'ctts': self.c_t_ts(), 'cttse': self.c_t_tse(), 'cts': self.c_t_s(), 'ct': self.c_t()}

@@ -57,6 +57,7 @@ class pfcm:
 
     def generarPn(self):
         cpn = self.p_cero()
+        # dic = []
         dic = [{'n': '0', 'pn': str(cpn), 'cpn': str(cpn), 'ccpn': str(1-cpn)}]
         for i in range(1, self.m + 1):
             cpn += self.p_n(i)

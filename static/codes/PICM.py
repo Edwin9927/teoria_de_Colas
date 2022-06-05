@@ -57,7 +57,7 @@ class picm:
     def generarPn(self):
         cpn = self.p_cero()
         dic = [{'n': '0', 'pn': str(cpn), 'cpn': str(cpn), 'ccpn': str(1-cpn)}]
-        for i in range(1, 51):
+        for i in range(1, 31):
             cpn += self.p_n(i)
             dic.append({'n': i, 'pn': self.p_n(i), 'cpn': str(cpn), 'ccpn': str(1-cpn)})
         return dic
