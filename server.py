@@ -13,33 +13,18 @@ def index():
     if request.method == 'POST':
         data = request.form.to_dict()
         print(data)
-
         # Determinar si el sistema es finito
         if data["m"] == '':
             obj_picm = picm(int(data["k"]), float(data["mu"]), float(data["lambda"]))
 
             # Determinar si la condicion del sistema es valido
             if obj_picm.estabilidadSistema():
-                """print("p0=", obj_picm.p_cero())
-                print("pk=", obj_picm.p_k())
-                print("p0=", obj_picm.p_n(0))
-                print("l=", obj_picm.l())
-                print("lq=", obj_picm.l_q())
-                print("ln=", obj_picm.l_n())
-                print("w=", obj_picm.w())
-                print("wq=", obj_picm.w_q())
-                print("wn=", obj_picm.w_n())
-                print("pn", obj_picm.generarPn())
-                print(data)"""
-
                 dl = 1
-
                 # Determinar las horas de trabajo en un dia
                 if data["dl"] == '':
                     pass
                 else:
                     dl = int(data['dl'])
-
                 # Determinar si se ingreso el costo del servidor
                 if data["cs"] == '':
                     print("No hay costes")
@@ -80,12 +65,6 @@ def index():
                         float(data['cu']),
                         data['costo']
                     )
-
-                    print("ctte", obj_costo.c_t_te())
-                    print('ctts', obj_costo.c_t_ts())
-                    print("cttse", obj_costo.c_t_tse())
-                    print("cts", obj_costo.c_t_s())
-                    print("ct", obj_costo.c_t())
                     return render_template(
                         'data.html',
                         nav=data,
@@ -111,20 +90,7 @@ def index():
                 print("Sistema no valido")
 
         else:
-            print("PF")
             obj_pfcm = pfcm(int(data["k"]), float(data["mu"]), float(data["lambda"]), int(data["m"]))
-            """print("p0_parte1", obj_pfcm.p_cero_parte1())
-            print("p0_parte2", obj_pfcm.p_cero_parte2())
-            print("p0", obj_pfcm.p_cero())
-            print(obj_pfcm.generarPn())
-            print("pe", obj_pfcm.p_e())
-            print("pne", obj_pfcm.p_ne())
-            print("l", obj_pfcm.l())
-            print("lq", obj_pfcm.l_q())
-            print("ln", obj_pfcm.l_n())
-            print("w", obj_pfcm.w())
-            print("wq", obj_pfcm.w_q())
-            print("wn", obj_pfcm.w_n())"""
             return render_template(
                 'dataPFCM.html',
                 nav=data,
@@ -149,4 +115,4 @@ def show():
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5001, debug=True)
+    app.run(host="0.0.0.0")
