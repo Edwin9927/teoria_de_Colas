@@ -156,5 +156,92 @@
     </table>
     <br>
 
+    {% if nav.cs == '': %}
+        <h1>No hay costos</h1>
+        {% else %}
+        <table class="default">
+            <caption>Datos para costos</caption>
+            <thead>
+                <tr>
+                    <th>item</th>
+                    <th>symbol</th>
+                    <th>measured</th>
+                    <th>value</th>
+                </tr>
+            </thead>
+            <tr>
+                <td>Horas al dia</td>
+                <td>H_d</td>
+                <td>h/dia</td>
+                <td>{{nav.dl}}</td>
+            </tr>
+            <tr>
+                <td>Costo del servidor</td>
+                <td>Cs</td>
+                <td>$/h</td>
+                <td>{{nav.cs}}</td>
+            </tr>
+            <tr>
+                {% if nav.costo == 'TS': %}
+                    <td>Costo por tiempo en el sistema</td>
+                {% elif nav.costo == 'TE': %}
+                    <td>Costo por tiempo de espera</td>
+                {% else %}
+                    <td>Costo por tiempo en el servicio</td>
+                {% endif %}
+                <td>C<sub>{{nav.costo}}</sub></td>
+                <td>$/h</td>
+                <td>{{nav.cu}}</td>
+            </tr>
+        </table>
+        <br>
+            <table class="default">
+            <caption>Costos</caption>
+            <thead>
+                <tr>
+                    <th>item</th>
+                    <th>symbol</th>
+                    <th>measured</th>
+                    <th>value</th>
+                </tr>
+            </thead>
+                <tr>
+                    <td>Costo Diario por el Tiempo de Espera en Cola</td>
+                    <td>CT<sub>TE</sub></td>
+                    <td>$/d</td>
+                    <td>{{d_ct.ctte}}</td>
+                </tr>
+
+                <tr>
+                    <td>Costo Diario por el Tiempo en el sistema</td>
+                    <td>CT<sub>TS</sub></td>
+                    <td>$/d</td>
+                    <td>{{d_ct.ctts}}</td>
+                </tr>
+
+                <tr>
+                    <td>Costo Diario por el Tiempo en el servicio</td>
+                    <td>CT<sub>TSE</sub></td>
+                    <td>$/d</td>
+                    <td>{{d_ct.cttse}}</td>
+                </tr>
+
+                <tr>
+                    <td>Costo Diario del servidor</td>
+                    <td>CT<sub>S</sub></td>
+                    <td>$/d</td>
+                    <td>{{d_ct.cts}}</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Costo Total Diario del Sistema</strong></td>
+                    <td><strong>CT</strong></td>
+                    <td><strong>$/d</strong></td>
+                    <td><strong>{{d_ct.ct}}</strong></td>
+                </tr>
+        </table>
+        <br>
+        {% endif %}
+
     <a href="{{ url_for('index') }}">Regresar</a>
 </body>

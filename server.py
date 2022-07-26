@@ -91,20 +91,71 @@ def index():
 
         else:
             obj_pfcm = pfcm(int(data["k"]), float(data["mu"]), float(data["lambda"]), int(data["m"]))
-            return render_template(
-                'dataPFCM.html',
-                nav=data,
-                p0=obj_pfcm.p_cero(),
-                pe=obj_pfcm.p_e(),
-                pne=obj_pfcm.p_ne(),
-                l=obj_pfcm.l(),
-                lq=obj_pfcm.l_q(),
-                ln=obj_pfcm.l_n(),
-                w=obj_pfcm.w(),
-                wq=obj_pfcm.w_q(),
-                wn=obj_pfcm.w_n(),
-                pn=obj_pfcm.generarPn()
-            )
+
+            # Determinar las horas de trabajo en un dia
+            if data["dl"] == '':
+                pass
+            else:
+                dl = int(data['dl'])
+
+            # Determinar si se ingreso el costo del servidor
+            if data["cs"] == '':
+                print("No hay costes")
+                return render_template(
+                    'dataPFCM.html',
+                    nav=data,
+                    p0=obj_pfcm.p_cero(),
+                    pe=obj_pfcm.p_e(),
+                    pne=obj_pfcm.p_ne(),
+                    l=obj_pfcm.l(),
+                    lq=obj_pfcm.l_q(),
+                    ln=obj_pfcm.l_n(),
+                    w=obj_pfcm.w(),
+                    wq=obj_pfcm.w_q(),
+                    wn=obj_pfcm.w_n(),
+                    pn=obj_pfcm.generarPn()
+                )
+            else:
+                """print("Hay costes")
+                obj_exp = experimentacion(
+                    obj_pfcm,
+                    int(data['dl']),
+                    float(data['cs']),
+                    float(data['cu']),
+                    data['costo']
+                )
+
+                print("obj_exp:", obj_exp)"""
+
+                obj_costo = costo(
+                    obj_pfcm.k,
+                    float(data["lambda"]),
+                    obj_pfcm.w_q(),
+                    obj_pfcm.w(),
+                    float(data["mu"]),
+                    dl,
+                    float(data['cs']),
+                    float(data['cu']),
+                    data['costo']
+                )
+
+                print("obj_costo:", obj_costo)
+
+                return render_template(
+                    'dataPFCM.html',
+                    nav=data,
+                    p0=obj_pfcm.p_cero(),
+                    pe=obj_pfcm.p_e(),
+                    pne=obj_pfcm.p_ne(),
+                    l=obj_pfcm.l(),
+                    lq=obj_pfcm.l_q(),
+                    ln=obj_pfcm.l_n(),
+                    w=obj_pfcm.w(),
+                    wq=obj_pfcm.w_q(),
+                    wn=obj_pfcm.w_n(),
+                    pn=obj_pfcm.generarPn(),
+                    d_ct=obj_costo.reporte_costos()
+                )
 
     return render_template('index.html')
 

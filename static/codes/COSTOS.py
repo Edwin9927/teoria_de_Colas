@@ -21,6 +21,10 @@ class costo:
     # C. diario tiempo sistema
     def c_t_ts(self):
         if self.sw == 'TS':
+            print("w:", self.w)
+            print("lambda:", self._lambda)
+            print("Horas:", self.dl)
+            print("Costo:", self.cu)
             return self._lambda * self.dl * self.w * self.cu
         else:
             return 0
