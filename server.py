@@ -63,7 +63,8 @@ def index():
                         dl,
                         float(data['cs']),
                         float(data['cu']),
-                        data['costo']
+                        data['costo'],
+                        obj_picm.l()
                     )
                     return render_template(
                         'data.html',
@@ -136,7 +137,8 @@ def index():
                     dl,
                     float(data['cs']),
                     float(data['cu']),
-                    data['costo']
+                    data['costo'],
+                    obj_pfcm.l()
                 )
 
                 print("obj_costo:", obj_costo)

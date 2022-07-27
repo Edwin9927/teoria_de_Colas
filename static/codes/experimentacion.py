@@ -15,7 +15,7 @@ class experimentacion:
         for k in range(1, 11):
             self.picm.k = k
             if self.picm.rho_k() < 1:
-                print('k', self.picm.k)
+                #print('k', self.picm.k)
                 obj_costo = costo(
                     self.picm.k,
                     self.picm._lambda,
@@ -25,7 +25,8 @@ class experimentacion:
                     self.dl,
                     self.cs,
                     self.cu,
-                    self.costo
+                    self.costo,
+                    self.picm.l()
                 )
                 exp.append({'k': self.picm.k,
                             'p0': self.picm.p_cero(),

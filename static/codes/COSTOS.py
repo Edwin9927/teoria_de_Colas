@@ -1,5 +1,5 @@
 class costo:
-    def __init__(self, k, _lambda, wq, w, mu, dl, cs, cu, sw):
+    def __init__(self, k, _lambda, wq, w, mu, dl, cs, cu, sw, l):
         self.k = k
         self._lambda = _lambda
         self.wq = wq
@@ -9,6 +9,7 @@ class costo:
         self.cs = cs
         self.cu = cu
         self.sw = sw
+        self.l = l
 
     # C. totales
     # C. diario tiempo cola
@@ -25,7 +26,7 @@ class costo:
             print("lambda:", self._lambda)
             print("Horas:", self.dl)
             print("Costo:", self.cu)
-            return self._lambda * self.dl * self.w * self.cu
+            return self.l * self.dl * self.cu
         else:
             return 0
 
